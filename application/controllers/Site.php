@@ -5,8 +5,10 @@ class Site extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('common/header');
-        $this->load->view('site/index');
-        $this->load->view('common/footer');
+        $data["title"] = "Page d'accueil";
+
+        $this->load->view('common/header', $data);
+        $this->load->view('site/index', $data);
+        $this->load->view('common/footer', $data);
     }
 }

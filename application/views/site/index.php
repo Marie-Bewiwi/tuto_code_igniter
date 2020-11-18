@@ -8,4 +8,5 @@
   <p>Bla, bla, bla...</p>
   <p>Bla, bla, bla...</p>
   <p>Bla, bla, bla...</p>
+  <a href="<?=site_url('index');?>">Accueil</a>
 </div>
