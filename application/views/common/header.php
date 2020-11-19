@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <?php echo meta("UTF-8", "", "charset"); ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?=$title?></title>
@@ -31,7 +31,8 @@
         </div>
         <div class="collapse navbar-collapse" id="main_nav">
           <ul class="nav navbar-nav">
-            <li><a href="/index.html">Accueil</a></li>
+          <li><?=anchor('index', "Accueil");?></li>
+          <li><?=anchor('contact', "Contact ");?></li>
           </ul>
         </div>
       </div>

@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <div class="container">
-    <h1><?=$title?></h1>
+    <?=heading("Welcome");?>
     <p>Ceci est ma page d'accueil</p>
   </div>
 </div>
