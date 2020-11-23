@@ -1,8 +1,11 @@
+<?php
+$article_url = 'blog/' . $alias . '_' . $id;
+?>
 <div class="col-md-4">
   <?=heading(htmlentities($title), 2);?>
   <p>
     <small>
-      <?=date_format($date, 'd/m/Y');?>
+      <?=nice_date($date, 'd/m/Y');?>
       -
       <?=$author?>
       <?php if ($this->auth_user->is_connected): ?>

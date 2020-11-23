@@ -80,7 +80,7 @@ class Blog extends CI_Controller
 
         if ($this->article->is_found) {
             $data['title'] = htmlentities($this->article->title);
-
+            $data['script'] = '<script src="' . base_url('js/article.js') . '"></script>';
             $this->load->view('common/header', $data);
             $this->load->view('blog/article', $data);
             $this->load->view('common/footer', $data);
@@ -110,8 +110,21 @@ class Blog extends CI_Controller
         }
         $data['title'] = "Suppression article";
         $this->load->helper('form');
-        $this->load->view('common/header', $data);
-        $this->load->view('blog/delete', $data);
-        $this->load->view('common/footer', $data);
+        if ($this->input->is_ajax_request()) {
+            // nous avons reçu une requête ajax
+            $this->load->view('blog/delete_confirm');
+        } else {
+            // nous avons reçu une requête classique
+            if ($this->input->post('confirm') === null) {
+                $data['action'] = "confirm";
+            } else {
+                $this->article->delete();
+                $data['action'] = "result";
+            }
+            $data['title'] = "Suppression article";
+            $this->load->view('common/header', $data);
+            $this->load->view('blog/delete', $data);
+            $this->load->view('common/footer', $data);
+        }
     }
 }
