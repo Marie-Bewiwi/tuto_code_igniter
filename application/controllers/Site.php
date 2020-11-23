@@ -56,4 +56,38 @@ class Site extends CI_Controller
         $this->load->view('common/footer', $data);
     }
 
+    public function session_test()
+    {
+        $this->session->count++;
+        echo "Valeur :" . $this->session->count;
+    }
+
+    public function connexion()
+    {
+        $this->load->helper("form");
+        $this->load->library('form_validation');
+
+        $data["title"] = "Identification";
+
+        if ($this->form_validation->run()) {
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $this->auth_user->login($username, $password);
+            if ($this->auth_user->is_connected) {
+                redirect('index');
+            } else {
+                $data['login_error'] = "Échec de l'authentification";
+            }
+        }
+        $this->load->view('common/header', $data);
+        $this->load->view('site/connexion', $data);
+        $this->load->view('common/footer', $data);
+    }
+
+    public function deconnexion()
+    {
+        $this->auth_user->logout();
+        redirect('index');
+    }
+
 }
